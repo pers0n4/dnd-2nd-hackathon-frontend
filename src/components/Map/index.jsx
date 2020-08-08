@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Fab from "../Fab";
 
 const Map = () => {
   useEffect(() => {
@@ -42,7 +43,12 @@ const Map = () => {
     });
   }, []);
 
-  return <div id="kakao-map" style={{ width: "100vw", height: "100vh" }}></div>;
+  return (
+    <>
+      <Fab />
+      <div id="kakao-map" style={{ width: "100vw", height: "100vh" }}></div>
+    </>
+  );
 };
 
 export default Map;
