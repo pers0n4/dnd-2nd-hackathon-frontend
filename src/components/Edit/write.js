@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./edit.css";
 import logo from "../../assets/MapiaryIcon.png";
 import img1 from "../../assets/write1.png";
@@ -37,7 +38,9 @@ const Write = () => {
         <input placeholder="첨부"></input>
         <img class="icon" src={put}></img>
       </div>
-      <img class="btn" src={img6}></img>
+      <Link to="/">
+        <img class="btn" src={img6}></img>
+      </Link>
     </div>
   );
 };
