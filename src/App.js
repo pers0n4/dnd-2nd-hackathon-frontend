@@ -1,10 +1,10 @@
 import React from "react";
-import Map from "./components/Map";
+import SignUp from "./components/Auth/signup";
 
 const App = () => {
   return (
     <div>
-      <Map />
+      <SignUp />
     </div>
   );
 };

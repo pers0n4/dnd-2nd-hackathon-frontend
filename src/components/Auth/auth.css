@@ -1,0 +1,76 @@
+@font-face {
+  font-family: "TmoneyRoundWindExtraBold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindExtraBold.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "TmoneyRoundWindRegular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindRegular.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: "TmoneyRoundWindRegular";
+  margin: 0;
+}
+p {
+  font-size: 24px;
+  line-height: 31px;
+  color: #ffffff;
+  text-shadow: 5px 5px 4px rgba(0, 0, 0, 0.25);
+}
+.main {
+  margin: 5vw;
+  margin-left: 13vw;
+  margin-right: 7vw;
+}
+.main p {
+  padding: 2vh;
+}
+.background {
+  background: linear-gradient(180deg, #217bff 0%, rgba(255, 255, 255, 0) 100%),
+    #30d4ff;
+  width: 100vw;
+  display: flex;
+  height: 100vh;
+}
+.signup-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.logo {
+  width: 300px;
+}
+.signup-input {
+  width: 300px;
+  padding: 3vh;
+  font-size: 24px;
+  line-height: 31px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid #ffffff;
+}
+
+.signup-btn {
+  width: 300px;
+  height: 60px;
+  background: #6241ea;
+  box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 50px;
+  font-size: 24px;
+  line-height: 31px;
+  border: none;
+  /* identical to box height */
+
+  color: #ffffff;
+  margin: 3vh;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+}

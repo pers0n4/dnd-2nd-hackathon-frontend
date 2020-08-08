@@ -4,11 +4,11 @@ const Map = () => {
   useEffect(() => {
     const script = document.createElement("script");
     script.async = true;
-    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_KAKAO_API_KEY}&autoload=false`;
+    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=b5e40569410bd104693d5ed21e97b1e0&autoload=false`;
     document.head.appendChild(script);
 
     let example;
-    fetch("http://localhost:8000/diaries", { method: "GET" })
+    fetch("http://192.168.0.30:8000/diaries", { method: "GET" })
       .then((response) => {
         response.json().then((result) => {
           example = result;
