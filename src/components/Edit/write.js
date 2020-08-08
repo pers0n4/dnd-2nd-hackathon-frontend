@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./edit.css";
 import logo from "../../assets/MapiaryIcon.png";
 import img1 from "../../assets/write1.png";
@@ -9,11 +9,24 @@ import search from "../../assets/icon1.png";
 import put from "../../assets/icon2.png";
 
 const Write = () => {
+  const [searchText, setSearchText] = useState("");
+
+  const getLocation = () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const { latitude, longitude } = position.coords;
+      setSearchText(`${latitude}, ${longitude}`);
+    });
+  };
+
   return (
     <div class="editpage">
       <img class="question" src={img1}></img>
       <div class="input">
-        <input placeholder="검색"></input>
+        <input
+          placeholder="검색"
+          onClick={getLocation}
+          value={searchText}
+        ></input>
         <img class="icon" src={search}></img>
       </div>
 
