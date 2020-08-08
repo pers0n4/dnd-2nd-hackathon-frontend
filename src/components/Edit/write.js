@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
 import "./edit.css";
 import logo from "../../assets/MapiaryIcon.png";
 import img1 from "../../assets/write1.png";
@@ -11,12 +12,30 @@ import put from "../../assets/icon2.png";
 
 const Write = () => {
   const [searchText, setSearchText] = useState("");
+  const history = useHistory();
 
   const getLocation = () => {
+    let location;
     navigator.geolocation.getCurrentPosition((position) => {
       const { latitude, longitude } = position.coords;
-      setSearchText(`${latitude}, ${longitude}`);
+      location = { latitude, longitude };
+      setSearchText(`${latitude},${longitude}`);
     });
+    return location;
+  };
+
+  const postData = () => {
+    const [latitude, longitude] = searchText.split(",");
+    console.log(latitude, longitude);
+
+    axios
+      .post("http://localhost:8000/diaries", {
+        latitude,
+        longitude,
+      })
+      .then((response) => {
+        history.push("/");
+      });
   };
 
   return (
@@ -38,9 +57,7 @@ const Write = () => {
         <input placeholder="첨부"></input>
         <img class="icon" src={put}></img>
       </div>
-      <Link to="/">
-        <img class="btn" src={img6}></img>
-      </Link>
+      <img class="btn" src={img6} onClick={postData}></img>
     </div>
   );
 };
