@@ -2,7 +2,7 @@ import React from "react";
 import "./auth.css";
 import logo from "../../assets/MapiaryIcon.png";
 
-const SignIp = () => {
+const SignIn = () => {
   return (
     <div class="background">
       <div class="main">
@@ -24,4 +24,4 @@ const SignIp = () => {
   );
 };
 
-export default SignIp;
+export default SignIn;
