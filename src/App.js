@@ -1,10 +1,10 @@
 import React from "react";
-import Write from "./components/Edit/write";
+import Routes from "./components/Routes";
 
 const App = () => {
   return (
     <div>
-      <Write />
+      <Routes />
     </div>
   );
 };
