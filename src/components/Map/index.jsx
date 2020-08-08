@@ -2,56 +2,44 @@ import React, { useEffect } from "react";
 
 const Map = () => {
   useEffect(() => {
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=b5e40569410bd104693d5ed21e97b1e0&autoload=false`;
-    document.head.appendChild(script);
+    const { kakao } = window;
 
-    let example;
-    fetch("http://192.168.0.30:8000/diaries", { method: "GET" })
-      .then((response) => {
-        response.json().then((result) => {
-          example = result;
+    kakao.maps.load(() => {
+      let container = document.getElementById("kakao-map");
+      let options = {
+        center: new kakao.maps.LatLng(35.231155, 129.083623),
+        level: 3,
+      };
 
-          console.log(example);
-        });
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+      const map = new kakao.maps.Map(container, options);
 
-    script.onload = () => {
-      const { kakao } = window;
-      kakao.maps.load(() => {
-        let container = document.getElementById("kakao-map");
-        let options = {
-          center: new kakao.maps.LatLng(35.231155, 129.083623),
-          level: 3,
-        };
+      const markerSrc =
+        "https://developers.kakao.com/console/static/favicon.ico";
+      const markerSize = new kakao.maps.Size(64, 64);
 
-        const map = new kakao.maps.Map(container, options);
+      const markerImage = new kakao.maps.MarkerImage(markerSrc, markerSize, {});
 
-        const markerSrc =
-          "https://developers.kakao.com/console/static/favicon.ico";
-        const markerSize = new kakao.maps.Size(64, 64);
+      fetch("http://localhost:8000/diaries", { method: "GET" })
+        .then((response) => {
+          response.json().then((result) => {
+            for (const mark of result) {
+              const markerPosition = new kakao.maps.LatLng(
+                mark.latitude,
+                mark.longitude
+              );
 
-        const markerImage = new kakao.maps.MarkerImage(
-          markerSrc,
-          markerSize,
-          {}
-        );
-
-        for (const e of example) {
-          const markerPosition = new kakao.maps.LatLng(e.latitude, e.longitude);
-
-          const marker = new kakao.maps.Marker({
-            position: markerPosition,
-            image: markerImage,
+              const marker = new kakao.maps.Marker({
+                position: markerPosition,
+                image: markerImage,
+              });
+              marker.setMap(map);
+            }
           });
-          marker.setMap(map);
-        }
-      });
-    };
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    });
   }, []);
 
   return <div id="kakao-map" style={{ width: "100vw", height: "100vh" }}></div>;
